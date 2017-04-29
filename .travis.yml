@@ -1,1 +1,7 @@
 language: java
+env:
+  global:
+    - COMMIT=${TRAVIS_COMMIT::8}
+after-success:
+  - pwd
+  - docker login -u AWS -p $AWS_DOCKER_LOGIN -e none $HELLOPAGE_REPO_URL
