@@ -10,5 +10,5 @@ after_success:
   - sh src/scripts/buildDockerSetup.sh
   - cd src/docker
   - docker build -t hellopage .
-  - docker tag hellopage:latest $HELLOPAGE_REPO_URI:latest
-  - docker push $HELLOPAGE_REPO_URI:latest
+  - docker tag hellopage:latest $HELLOPAGE_REPO_URI:$TRAVIS_BRANCH
+  - docker push $HELLOPAGE_REPO_URI:$TRAVIS_BRANCH
