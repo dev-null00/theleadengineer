@@ -1,12 +1,14 @@
 language: java
 jdk:
   - oraclejdk8
-env:
-  global:
-    - COMMIT=${TRAVIS_COMMIT::8}
-after-script:
-  - echo "hello does this work?"
-  - docker build -t hellopage .
+sudo: required
+services:
+  - docker
+after_success:
   - docker login -u AWS -p $AWS_DOCKER_LOGIN -e none $HELLOPAGE_REPO_URL
-  - docker tag hellopage:latest $HELLOPAGE_REPO_URI/hellopage:latest
-  - docker push $HELLOPAGE_REPO_URI/hellopage:latest
+  - cd hellopage
+  - sh src/scripts/buildDockerSetup.sh
+  - cd src/docker
+  - docker build -t hellopage .
+  - docker tag hellopage:latest $HELLOPAGE_REPO_URI:$TRAVIS_BRANCH
+  - docker push $HELLOPAGE_REPO_URI:$TRAVIS_BRANCH
