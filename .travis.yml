@@ -4,7 +4,8 @@ jdk:
 env:
   global:
     - COMMIT=${TRAVIS_COMMIT::8}
-after-success:
+after-script:
+  - echo "hello does this work?"
   - docker build -t hellopage .
   - docker login -u AWS -p $AWS_DOCKER_LOGIN -e none $HELLOPAGE_REPO_URL
   - docker tag hellopage:latest $HELLOPAGE_REPO_URI/hellopage:latest
