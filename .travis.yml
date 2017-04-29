@@ -1,7 +1,7 @@
 language: java
 jdk:
   - oraclejdk8
-after-script:
+script:
   - echo "hello does this work?"
   - docker build -t hellopage .
   - docker login -u AWS -p $AWS_DOCKER_LOGIN -e none $HELLOPAGE_REPO_URL
