@@ -1,7 +1,10 @@
 language: java
 jdk:
   - oraclejdk8
-script:
+sudo: required
+services:
+  - docker
+after-script:
   - docker build -t hellopage .
   - docker login -u AWS -p $AWS_DOCKER_LOGIN -e none $HELLOPAGE_REPO_URL
   - docker tag hellopage:latest $HELLOPAGE_REPO_URI/hellopage:latest
