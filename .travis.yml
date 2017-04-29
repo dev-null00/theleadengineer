@@ -5,5 +5,7 @@ env:
   global:
     - COMMIT=${TRAVIS_COMMIT::8}
 after-success:
-  - pwd
+  - docker build -t hellopage .
   - docker login -u AWS -p $AWS_DOCKER_LOGIN -e none $HELLOPAGE_REPO_URL
+  - docker tag hellopage:latest $HELLOPAGE_REPO_URI/hellopage:latest
+  - docker push $HELLOPAGE_REPO_URI/hellopage:latest
