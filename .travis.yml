@@ -10,7 +10,7 @@ after_success:
   - sh src/scripts/buildDockerSetup.sh
   - cd src/docker
   - docker build -t hellopage .
-  - docker tag hellopage:latest $HELLOPAGE_REPO_URI:$TRAVIS_BRANCH
+  - docker tag hellopage:latest $HELLOPAGE_REPO_URI:$TRAVIS_BUILD_NUMBER
   - docker push $HELLOPAGE_REPO_URI:$TRAVIS_BRANCH
   - docker pull 766951526867.dkr.ecr.us-west-2.amazonaws.com/deployer:master
   - docker images
