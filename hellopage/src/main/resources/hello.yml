@@ -3,5 +3,5 @@ server:
     - type: http
       port: 7122
 
-template: Hello V2, %s!
+template: Hello V3, %s!
 defaultName: Stranger
